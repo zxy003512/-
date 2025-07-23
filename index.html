@@ -20,33 +20,93 @@
             cursor: none; /* 全程隐藏鼠标指针 */
         }
 
-        /* 开始遮罩层 */
+        /* --- 以下是替换后的新版引导页样式 --- */
         #start-overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg-color);
-            display: flex; justify-content: center; align-items: center;
+            background: #FFFFFF; /* 白色背景 */
+            display: flex; /* 使用flex布局 */
+            flex-direction: column;
             z-index: 100;
             cursor: pointer;
-            flex-direction: column;
+            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif; /* 模仿系统UI字体 */
+            color: #000000;
         }
 
-        /* --- 以下是针对“引导点击”文字的修改 --- */
-        #start-overlay p {
-            font-size: 2.8em; /* 大幅增加主标题字号 */
-            color: #ddd; /* 修改为非常亮的灰色，确保可见性 */
-            text-shadow: 0 0 10px rgba(221, 221, 221, 0.6); /* 添加辉光效果，使其在黑色背景上更突出 */
-            animation: flicker 2.5s infinite;
-            margin: 0; /* 移除默认段落边距 */
-            padding: 0 20px; /* 在小屏幕上增加内边距，防止文字紧贴边缘 */
-            text-align: center; /* 保证文字居中 */
+        .warning-page-header {
+            padding: 10px 15px;
+            font-size: 28px;
+            color: #a0a0a0;
         }
-        #start-overlay p.small {
-            font-size: 1.2em; /* 相应增加副标题字号 */
-            color: #999; /* 副标题也使用更亮的灰色 */
-            margin-top: 25px; /* 增加与主标题的间距 */
-            text-shadow: none; /* 副标题不需要辉光效果 */
+
+        .warning-page-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            padding-bottom: 120px; /* 将内容向上推，更像截图布局 */
         }
-        /* --- 修改结束 --- */
+        
+        .warning-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #1296db; /* 蓝色图标背景 */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 40px;
+            font-family: 'Times New Roman', serif; /* 衬线体 i 更像 */
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .warning-title {
+            font-size: 21px;
+            font-weight: 500;
+            margin-top: 25px;
+            margin-bottom: 35px;
+        }
+
+        .warning-url {
+            font-size: 16px;
+            color: #888888;
+            margin: 0;
+            word-break: break-all;
+        }
+
+        .warning-text {
+            font-size: 15px;
+            color: #b2b2b2;
+            margin-top: 15px;
+        }
+
+        .warning-page-footer {
+            padding: 20px 30px 30px 30px;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .action-button {
+            background-color: #f2f2f2;
+            color: #000;
+            padding: 13px;
+            border-radius: 8px;
+            font-size: 17px;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+
+        .secondary-action {
+            color: #576b95;
+            font-size: 14px;
+        }
+        /* --- 新版引导页样式结束 --- */
 
 
         /* 入侵主屏幕 */
@@ -55,19 +115,18 @@
             padding: 15px; box-sizing: border-box;
             display: flex; flex-direction: column;
             opacity: 0; /* 默认隐藏 */
-            transition: opacity 0.8s ease-out; /* 修改：增加平滑过渡效果 */
+            transition: opacity 0.8s ease-out; 
         }
 
         .terminal-header {
             width: 100%; text-align: center; color: var(--danger-color);
-            font-size: 1.4em; /* 修改：增大标题字号 */
+            font-size: 1.4em; 
             padding-bottom: 10px; border-bottom: 1px solid #333;
             margin-bottom: 10px; animation: flicker 2s infinite;
         }
 
         #terminal-log {
             flex-grow: 1; overflow-y: auto;
-            /* 修改：增大终端日志字号和间距，更清晰 */
             font-size: 1.1em;
             line-height: 1.7; 
             letter-spacing: 1px;
@@ -78,7 +137,6 @@
         #terminal-log div { margin: 4px 0; white-space: pre-wrap; word-break: break-all; }
         .ok { color: var(--text-color); }
         .warn { color: var(--accent-color); }
-        /* 修改：让危险提示更醒目 */
         .danger { 
             color: var(--danger-color); 
             font-weight: bold; 
@@ -86,7 +144,6 @@
         }
         .section { color: #fff; margin-top: 15px; text-decoration: underline; }
         
-        /* 修改：特别高亮的危险提示，使其更具冲击力 */
         .highlight-danger {
             background-color: var(--danger-color);
             color: white;
@@ -114,19 +171,18 @@
             opacity: 0;
             transition: opacity 0.5s ease-in;
         }
-        /* 修改：修复标题文字重叠问题，并调整样式 */
         #final-message h2 {
             color: var(--danger-color);
             margin: 0;
-            font-size: 2.2em; /* 调整字号以适应容器 */
-            line-height: 1.3;  /* 关键：增加行高防止重叠 */
+            font-size: 2.2em; 
+            line-height: 1.3;  
             text-shadow: 0 0 10px var(--danger-color);
             animation: flicker 1.5s infinite;
         }
         #final-message p {
             color: #fff;
             margin: 15px 0 0;
-            font-size: 1.3em; /* 增大副标题字号 */
+            font-size: 1.3em;
         }
 
         /* 揭秘屏幕 */
@@ -157,9 +213,21 @@
 </head>
 <body>
 
+    <!-- 这是替换后的新版引导页HTML -->
     <div id="start-overlay">
-        <p>屏幕控制器损坏</p>
-        <p class="small">随便点击屏幕进行修复</p>
+        <div class="warning-page-header">
+            <span>×</span>
+        </div>
+        <div class="warning-page-content">
+            <div class="warning-icon">i</div>
+            <p class="warning-title">将要访问</p>
+            <p class="warning-url">http://ykt.fun/tV9J</p>
+            <p class="warning-text">无法确认该网页的安全性，请谨慎访问。</p>
+        </div>
+        <div class="warning-page-footer">
+            <div class="action-button">继续访问</div>
+            <div class="secondary-action">申请恢复</div>
+        </div>
     </div>
 
     <div id="breach-screen">
@@ -229,12 +297,14 @@
         }
 
         function startSequence() {
+            // 隐藏引导页，显示入侵屏幕
             startOverlay.style.display = 'none';
             breachScreen.style.opacity = '1';
 
+            // 阻止后续的任何点击操作，防止用户退出全屏或触发其他事件
             document.addEventListener('click', e => {
                 e.preventDefault();
-            }, true);
+            }, { capture: true, once: false }); // 使用捕获确保最先执行
 
             processLogs();
         }
@@ -255,11 +325,10 @@
         }
 
         function showFinalMessage() {
-            // 修改：淡出背景终端，突出最终信息
             breachScreen.style.opacity = '0.1'; 
             
             finalMessage.style.display = 'block';
-            setTimeout(() => { // 加一个小延迟让display生效再改opacity，以触发过渡
+            setTimeout(() => {
                 finalMessage.style.opacity = '1';
             }, 50);
             
@@ -270,7 +339,7 @@
             finalMessage.style.opacity = '0';
 
             setTimeout(() => {
-                breachScreen.style.display = 'none'; // 可以彻底隐藏
+                breachScreen.style.display = 'none';
                 finalMessage.style.display = 'none';
                 revealScreen.style.visibility = 'visible';
                 revealScreen.style.opacity = '1';
@@ -278,6 +347,7 @@
             }, 1000);
         }
         
+        // 监听整个引导页的点击事件
         startOverlay.addEventListener('click', () => {
             enterFullScreen(document.documentElement);
             startSequence();
